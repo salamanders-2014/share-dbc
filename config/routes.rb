@@ -4,16 +4,12 @@ Rails.application.routes.draw do
 resources :users
 
 resources :resources do
-  resources :comments
+  resources :comments, except: :index
 end
 
-resources :subjects do
-  resources :resources
-end
+resources :subject, only: :show
 
-resources :learning_styles do
-  resources :resources
-end
+resources :learning_styles, only: :show
   # You can have the root of your site routed with "root"
   root 'welcome#index'
 
