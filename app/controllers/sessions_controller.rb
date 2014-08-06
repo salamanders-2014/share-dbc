@@ -1,13 +1,17 @@
 class SessionsController < ActionController::Base
   def new
-    @user = User.find_by(username: params[:username])
   end
 
   def create
-    @user = User.find_or_create_by(username: params[:username])
-    session[:id] = @user.id
-
-    render :new
+    user = User.find_by(username: params[:session][:username])
+    puts user
+    if user && user.authenticate(params[:session][:password])
+      session[:user_id] = user.id
+      redirect_to user
+    else
+      puts 'Invalid email/password combination'
+      render 'new'
+    end
   end
 
 end
