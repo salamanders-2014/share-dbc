@@ -8,3 +8,8 @@ Feautures
 
 Licensing 
 
+Authors
+[David Hwang](https://github.com/itsyou)
+[Jen Oseitutu](https://github.com/JennieO23)
+[Francisco Scala](https://github.com/franscan)
+[Joe Webb](https://github.com/ImJoeWebb)
