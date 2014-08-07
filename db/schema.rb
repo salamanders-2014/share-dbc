@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 20140807185211) do
   create_table "votes", force: true do |t|
     t.integer  "voter_id"
     t.integer  "resource_id"
+    t.integer  "learning_style_id"
     t.integer  "value"
     t.datetime "created_at"
     t.datetime "updated_at"
