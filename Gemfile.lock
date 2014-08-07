@@ -43,13 +43,9 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.7.1)
-<<<<<<< HEAD
-    diff-lcs (1.2.5)
-=======
     database_cleaner (1.2.0)
     diff-lcs (1.2.5)
     docile (1.1.5)
->>>>>>> origin/master
     erubis (2.7.0)
     execjs (2.2.1)
     hike (1.2.3)
@@ -201,10 +197,10 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   rails (= 4.1.4)
+  rspec-rails
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   shoulda-matchers
-  rspec-rails
   simplecov
   spring
   sqlite3

@@ -5,8 +5,8 @@ class ResourcesController < ApplicationController
   end
 
   def create
-    @user = User.find(session[:user_id])
-    @resource = @user.resources.create(resource_params)
+    current_user
+    @resource = @creator.resources.new(resource_params)
     if @resource.save
       redirect_to @resource
     else
@@ -15,17 +15,18 @@ class ResourcesController < ApplicationController
   end
 
   def show
-    @creator = User.find(@resource.creator.id)
+    current_user
     @resource = Resource.find(params[:id])
+    @creator = @resource.creator
   end
 
   def edit
-    @creator = User.find(@resource.creator.id)
     @resource = Resource.find(params[:id])
+    @creator = User.find(@resource.creator_id)
   end
 
   def update
-    @creator = User.find(@resource.creator.id)
+    @creator = @resource.creator
     @resource = Resource.find(params[:id])
     if @resource.update(resource_params)
       redirect_to @resource
@@ -35,17 +36,16 @@ class ResourcesController < ApplicationController
   end
 
   def destroy
-    @creator = User.find(@resource.creator.id)
-    @resource = Resource.find(params[:id])
+    @resource = Resource.find_by(creator_id: session[:user_id], id: params[:id])
     @resource.destroy
 
-    redirect_to user_path(@user)
+    redirect_to user_path(session[:user_id])
   end
 
   def upvote
     @resource = Resource.find(params[:id])
     @learning_style = @resource.learning_style.find(params[:learning_style])
-    @voter = User.find(session[:user_id])
+
     @resource.votes.create(voter_id:@voter.id, value: 1)
   end
 

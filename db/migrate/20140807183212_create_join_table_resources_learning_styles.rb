@@ -1,4 +1,4 @@
-class CreateLearningStyleResources < ActiveRecord::Migration
+class CreateJoinTableResourcesLearningStyles < ActiveRecord::Migration
   def change
     create_table :learning_styles_resources do |t|
       t.belongs_to :resources, index: true
