@@ -1,1 +1,10 @@
-<%= @user.username %>
+<h2> Welcome <%= @user.username %> !</p>
+
+<p> Here are the resources you've added: </p>
+<ol>
+  <% @user.resources.each do |resource|%>
+    <li><%= resource.title %></li>
+  <% end %>
+</ol>
+
+<%= link_to "Add a new resource", new_resource_path %>
