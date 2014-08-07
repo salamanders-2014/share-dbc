@@ -30,7 +30,9 @@ gem 'spring',        group: :development
 gem 'bcrypt', '~> 3.1.7'
 
 group :development, :test do
-  gem 'rspec-rails', '~> 3.0.0'
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'database_cleaner'
 end
 
 # Use unicorn as the app server

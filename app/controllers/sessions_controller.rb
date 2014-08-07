@@ -9,9 +9,14 @@ class SessionsController < ActionController::Base
       session[:user_id] = user.id
       redirect_to user
     else
-      puts 'Invalid email/password combination'
+      @errors = true
       render 'new'
     end
+  end
+
+  def destroy
+    session.clear
+    redirect_to :root
   end
 
 end
