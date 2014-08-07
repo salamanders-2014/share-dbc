@@ -7,14 +7,13 @@ get '/logout', to: 'sessions#destroy'
 
 resources :users
 resources :sessions, only: [:new, :create, :destroy]
-
-resources :resources do
+resources :resources, except: :index do
+  post '/upvote', to: 'vote#upvote'
+  post '/downvote', to: 'vote#downvote'
   resources :comments, except: :index
 end
 
-resources :subject, only: :show
-
-
+resources :subjects, only: :show
 resources :learning_styles, only: :show
 
   # You can have the root of your site routed with "root"
