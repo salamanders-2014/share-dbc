@@ -16,7 +16,7 @@ class SessionsController < ActionController::Base
 
   def destroy
     session.clear
-    redirect_to '/'
+    redirect_to :root
   end
 
 end
