@@ -3,17 +3,13 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 resources :users
 
-resources :resources do
-  resources :comments
+resources :resources, except: :index do
+  resources :comments, except: :index
 end
 
-resources :subjects do
-  resources :resources
-end
+resources :subjects, only: :show
+resources :learning_styles, only: :show
 
-resources :learning_styles do
-  resources :resources
-end
   # You can have the root of your site routed with "root"
   root 'welcome#index'
 
