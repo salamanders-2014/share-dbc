@@ -6,10 +6,13 @@ The goal of this site is to share useful learning style based resources within t
 
 Feautures
 
-Licensing 
+Licensing
 
 Authors
 [David Hwang](https://github.com/itsyou)
 [Jen Oseitutu](https://github.com/JennieO23)
 [Francisco Scala](https://github.com/franscan)
 [Joe Webb](https://github.com/ImJoeWebb)
+
+Codeship Status
+[ ![Codeship Status for salamanders-2014/share-dbc](https://www.codeship.io/projects/45ceffe0-0094-0132-f63c-721dff9e3dba/status)](https://www.codeship.io/projects/30004)

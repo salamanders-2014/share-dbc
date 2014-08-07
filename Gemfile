@@ -30,10 +30,13 @@ gem 'spring',        group: :development
 gem 'bcrypt', '~> 3.1.7'
 
 group :development, :test do
-  gem 'rspec-rails', '~> 3.0.0'
+  gem 'rspec-rails'
+  gem 'capybara'
   gem 'shoulda-matchers'
+  gem 'database_cleaner'
 end
 
+gem 'simplecov', :require => false, :group => :test
 # Use unicorn as the app server
 # gem 'unicorn'
 
