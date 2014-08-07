@@ -3,7 +3,7 @@
 <p> Here are the resources you've added: </p>
 <ol>
   <% @user.resources.each do |resource|%>
-    <li><%= resource.title %></li>
+    <li><%= link_to resource.title, resource_path(resource.id) %></li>
   <% end %>
 </ol>
 

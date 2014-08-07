@@ -5,7 +5,7 @@ class ResourcesController < ApplicationController
   end
 
   def create
-    current_user
+    @creator = current_user
     @resource = @creator.resources.new(resource_params)
     if @resource.save
       redirect_to @resource
@@ -15,7 +15,6 @@ class ResourcesController < ApplicationController
   end
 
   def show
-    current_user
     @resource = Resource.find(params[:id])
     @creator = @resource.creator
   end
