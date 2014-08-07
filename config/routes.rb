@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 get '/signup', to: 'users#new'
 get '/login', to: 'sessions#new'
-delete '/logout', to: 'sessions#destroy'
+get '/logout', to: 'sessions#destroy'
 
 resources :users
 resources :sessions, only: [:new, :create, :destroy]
