@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Resource, :type => :model do
 
   context "A Resource should.." do
-    it { should endsure_length_of(:link).is_at_least(6) }
+    it { should ensure_length_of(:link).is_at_least(6) }
     it 'should strip http:// from link' do
       @resource = Resource.create(title: 'rspec', link: 'http://www.google.com')
       expect(@resource.link).to eq 'www.google.com'
@@ -23,6 +23,6 @@ RSpec.describe Resource, :type => :model do
     describe "should not be valid if it doesn't include a link" do
 			before { @resource.link="" }
 			it { is_expected.to_not be_valid }
-		end		
+		end
 	end
-end 
+end
