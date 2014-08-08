@@ -5,10 +5,27 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic' rel='stylesheet' type='text/css'>
 </head>
 <body>
 
-<%= yield %>
+  <nav>
+    <ul>
 
+      <% if session[:user_id] %>
+      <li><%= link_to 'Log-out', logout_path(@user) %></li>
+      <li><a href="#">Profile</a></li>
+      <% else %>
+      <li><%= link_to 'Register', new_user_path %></li>
+      <li><%= link_to 'Log-in', login_path %></li>
+      <% end %>
+
+      <li><a href="#">Subject</a></li>
+      <li><a href="#">Learning Style</a></li>
+    </ul>
+  </nav>
+  <div class="container">
+    <%= yield %>
+  </div>
 </body>
 </html>

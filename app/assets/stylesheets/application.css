@@ -1,15 +1,57 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+
+body{
+  background-color: white;
+  font-family: "Lato", sans-serif;
+  margin: 0;
+}
+.intro h1{
+  color: rgba(50, 49, 63, 1);
+  margin-top:0;
+}
+.container{
+  width: 80%;
+  margin: 0 auto;
+  padding: 80px 0;
+}
+
+nav{
+  width: 100%;
+}
+
+nav ul{
+  background-color: rgba(50,49,63,0.9);
+  width: 100%;
+  padding: 10px;
+  margin: 0;
+  float: right;
+  list-style-type: none;
+  border-bottom: 7px solid #F06F4F;
+}
+
+nav ul li{
+  padding: 2px 8px;
+  float: right;
+  display: inline-block;
+}
+
+nav a{
+  text-decoration: none;
+  color: #FFFBF0;
+}
+nav a:hover{
+  color: #F06F4F;
+}
+
+#new_resource > .learning_style_form{
+  padding: 0;
+  text-align: left;
+  list-style-type: none;
+}
+.learning_style_form > li{
+  display: inline;
+}
+
+#new_resource #resource_description{
+  width: 300px;
+  height: 200px;
+}

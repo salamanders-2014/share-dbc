@@ -1,4 +1,4 @@
-class CreateSubjectsResources < ActiveRecord::Migration
+class CreateSubjectResources < ActiveRecord::Migration
   def change
     create_table :subjects_resources, id: false do |t|
       t.belongs_to :subject, index: true

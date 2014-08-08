@@ -7,7 +7,11 @@ class ResourcesController < ApplicationController
   def create
     @creator = current_user
     @resource = @creator.resources.new(resource_params)
+
     if @resource.save
+      params[:resource]["learning_style_ids"].each do |x|
+        LearningStyleResource.create(resource_id: @resource.id, learning_style_id: x)
+      end
       redirect_to @resource
     else
       render 'new'
@@ -15,6 +19,9 @@ class ResourcesController < ApplicationController
   end
 
   def show
+
+    @user = current_user
+
     @resource = Resource.find(params[:id])
     @creator = @resource.creator
   end
@@ -56,7 +63,7 @@ class ResourcesController < ApplicationController
 
   private
     def resource_params
-      params.require(:resource).permit(:title, :link, :description)
+      params.require(:resource).permit(:title, :link, :description, "learning_style_ids")
     end
 
 end
