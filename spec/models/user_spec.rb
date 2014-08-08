@@ -16,5 +16,8 @@ describe User do
     it "does not save an invalid signin form" do
       expect(@user.save).to eq(false)
     end
+    it "should not be valid if the first_name is missing"
+      before { @user.name="" }
+      it { is_expected.to_not be_valid }
   end
 end
