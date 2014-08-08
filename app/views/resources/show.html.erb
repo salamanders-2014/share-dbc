@@ -1,8 +1,10 @@
 
 <div class="show_resource">
   <h1><%= link_to(@resource.title, "http://#{@resource.link}") %></h1>
-  <span class="creator"><%= @creator.username %></span>
-  <% if @creator.id == @user.id %>
+
+  <span class="creator"><%= @creator.first_name %> <%= @creator.last_name %></span>
+  <% if @creator.id == current_user %>
+
   <small><%= link_to 'edit', edit_resource_path(@resource) %> |  <%= link_to 'delete' , resource_path(@resource), method: :delete, data: {confirm: 'Are you sure?'} %></small>
   <% end %>
   <div class="resource_description">

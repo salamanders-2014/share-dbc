@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140807185211) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "comments", force: true do |t|
     t.integer  "user_id"
     t.integer  "resource_id"
@@ -21,8 +24,8 @@ ActiveRecord::Schema.define(version: 20140807185211) do
     t.datetime "updated_at"
   end
 
-  add_index "comments", ["resource_id"], name: "index_comments_on_resource_id"
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+  add_index "comments", ["resource_id"], name: "index_comments_on_resource_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "learning_style_resources", force: true do |t|
     t.integer "resource_id"
@@ -46,7 +49,7 @@ ActiveRecord::Schema.define(version: 20140807185211) do
     t.datetime "updated_at"
   end
 
-  add_index "resources", ["creator_id"], name: "index_resources_on_creator_id"
+  add_index "resources", ["creator_id"], name: "index_resources_on_creator_id", using: :btree
 
   create_table "subjects", force: true do |t|
     t.string   "name"
@@ -61,8 +64,8 @@ ActiveRecord::Schema.define(version: 20140807185211) do
     t.datetime "updated_at"
   end
 
-  add_index "subjects_resources", ["resource_id"], name: "index_subjects_resources_on_resource_id"
-  add_index "subjects_resources", ["subject_id"], name: "index_subjects_resources_on_subject_id"
+  add_index "subjects_resources", ["resource_id"], name: "index_subjects_resources_on_resource_id", using: :btree
+  add_index "subjects_resources", ["subject_id"], name: "index_subjects_resources_on_subject_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "first_name"
@@ -85,7 +88,7 @@ ActiveRecord::Schema.define(version: 20140807185211) do
     t.datetime "updated_at"
   end
 
-  add_index "votes", ["resource_id"], name: "index_votes_on_resource_id"
-  add_index "votes", ["voter_id"], name: "index_votes_on_voter_id"
+  add_index "votes", ["resource_id"], name: "index_votes_on_resource_id", using: :btree
+  add_index "votes", ["voter_id"], name: "index_votes_on_voter_id", using: :btree
 
 end

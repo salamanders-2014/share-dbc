@@ -19,7 +19,9 @@ class ResourcesController < ApplicationController
   end
 
   def show
+
     @user = current_user
+
     @resource = Resource.find(params[:id])
     @creator = @resource.creator
   end

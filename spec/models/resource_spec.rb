@@ -10,5 +10,19 @@ RSpec.describe Resource, :type => :model do
     end
     it { should ensure_length_of(:title).is_at_least(4) }
     it { should have_many(:comments)}
+    it { should have_many(:comments)}
   end
+  describe "invalid Resource" do
+    before(:each) do
+      @resource = Resource.new(title: "jQuery takes over", link: "http://www.google.com", description: "something")
+    end
+    describe "should not be valid if it doesn't include a title" do
+			before { @resource.title="" }
+			it { is_expected.to_not be_valid }
+		end
+    describe "should not be valid if it doesn't include a link" do
+			before { @resource.link="" }
+			it { is_expected.to_not be_valid }
+		end
+	end
 end
