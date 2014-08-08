@@ -1,3 +1,32 @@
-// Place all the styles related to the resources controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.show_resource{
+  background-color: rgba(247, 217, 179, 0.5);
+  font-family: 'Lato', sans-serif;
+  border-radius: 25px;
+  padding: 10px;
+  margin: 20px;
+}
+.show_resource h1 a{
+  text-decoration: none;
+  padding: 5px;
+  margin: 10px;
+  color: #32313F;
+}
+
+.show_resource h1 a:hover{
+  color: #F06F4F;
+}
+.creator{
+  margin-left: 15px;
+  color: #747371;
+}
+.resource_description{
+  background-color: #FFFBF0;
+  padding: 10px 20px;
+  border-radius: 15px;
+  margin: 10px;
+}
+.show_resource > small a{
+  text-decoration: none;
+  color: #F23E2C;
+}

@@ -24,18 +24,18 @@ ActiveRecord::Schema.define(version: 20140807185211) do
   add_index "comments", ["resource_id"], name: "index_comments_on_resource_id"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
+  create_table "learning_style_resources", force: true do |t|
+    t.integer "resource_id"
+    t.integer "learning_style_id"
+  end
+
+  add_index "learning_style_resources", ["resource_id"], name: "index_learning_style_resources_on_resource_id"
+
   create_table "learning_styles", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "learning_styles_resources", force: true do |t|
-    t.integer "resources_id"
-    t.integer "learning_styles_id"
-  end
-
-  add_index "learning_styles_resources", ["resources_id"], name: "index_learning_styles_resources_on_resources_id"
 
   create_table "resources", force: true do |t|
     t.integer  "creator_id"
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 20140807185211) do
   create_table "votes", force: true do |t|
     t.integer  "voter_id"
     t.integer  "resource_id"
+    t.integer  "learning_style_id"
     t.integer  "value"
     t.datetime "created_at"
     t.datetime "updated_at"

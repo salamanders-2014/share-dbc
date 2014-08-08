@@ -2,13 +2,15 @@ class Resource < ActiveRecord::Base
   belongs_to :creator, class_name: 'User'
   has_many :comments
   has_many :votes
-  has_many :learning_styles, through: :learning_styles_resources
+  has_many :learning_style_resources
+  has_many :learning_styles, through: :learning_style_resources
   has_many :subjects, through: :subjects_resources
 
   validates_presence_of :link
   validates_presence_of :title
   validates_length_of :title, minimum: 4
   validates_length_of :link, minimum: 6
+
 
   # validates :link, presence: true, length: {minimum: 6}
   # validates :title, presence: true, length: {minimum: 4}
