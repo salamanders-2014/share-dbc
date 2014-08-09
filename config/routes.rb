@@ -13,7 +13,7 @@ resources :resources, except: :index do
   resources :comments, except: [:index, :new, :show]
 end
 
-resources :subjects, only: :show
+resources :subjects, only: [:index, :show]
 resources :learning_styles, only: [:index, :show]
 
   # You can have the root of your site routed with "root"

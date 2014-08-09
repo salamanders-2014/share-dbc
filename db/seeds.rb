@@ -20,3 +20,7 @@ users = 100.times.map do
                 :username => Faker::Name.last_name,
                 :password   => "password")
 end
+
+subjects =
+  Subject.create!([{name: "RSpec", resource_id: 1}, {name: "CSS", }, {name: "Ruby"}, {name: "SQL"}, {name: "ActiveRecord"}, {name: "Rails"}, {name: "RSpec"}])
+
