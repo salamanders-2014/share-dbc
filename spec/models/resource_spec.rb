@@ -4,13 +4,17 @@ RSpec.describe Resource, :type => :model do
 
   context "A Resource should.." do
     it { should ensure_length_of(:link).is_at_least(6) }
-    it 'should strip http:// from link' do
+    it { should respond_to(:http_stripper)}
+    it 'should have a method http_stripper thats strips http:// from link' do
       @resource = Resource.create(title: 'rspec', link: 'http://www.google.com')
       expect(@resource.link).to eq 'www.google.com'
     end
     it { should ensure_length_of(:title).is_at_least(4) }
-    it { should have_many(:comments)}
-    it { should have_many(:comments)}
+    it { should respond_to(:comments)}
+    it { should respond_to(:votes)}
+    it { should respond_to(:learning_style_resources)}
+    it { should respond_to(:learning_styles)}
+    it { should respond_to(:subjects)}
   end
   describe "invalid Resource" do
     before(:each) do

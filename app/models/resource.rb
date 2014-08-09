@@ -6,17 +6,17 @@ class Resource < ActiveRecord::Base
   has_many :learning_styles, through: :learning_style_resources
   has_many :subjects, through: :subjects_resources
 
-  validates_presence_of :link
-  validates_presence_of :title
-  validates_length_of :title, minimum: 4
-  validates_length_of :link, minimum: 6
+  validates_presence_of :link #
+  validates_presence_of :title #
+  validates_length_of :title, minimum: 4 #
+  validates_length_of :link, minimum: 6 #
 
 
   # validates :link, presence: true, length: {minimum: 6}
   # validates :title, presence: true, length: {minimum: 4}
 
   before_validation(on: :create) do
-    http_stripper
+    http_stripper #<--don't know how to test on before validation explicitly x
   end
 
   def http_stripper
