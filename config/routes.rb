@@ -14,7 +14,7 @@ resources :resources, except: :index do
 end
 
 resources :subjects, only: :show
-resources :learning_styles, only: :show
+resources :learning_styles, only: [:index, :show]
 
   # You can have the root of your site routed with "root"
   root 'welcome#index'
