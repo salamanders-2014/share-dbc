@@ -1,10 +1,14 @@
 <h2> Welcome <%= @user.username %> !</p>
 
+<% if @user.resources.length == 0 %>
+<p> You haven't added any resources yet! </p>
+<% else %>
 <p> Here are the resources you've added: </p>
 <ol>
   <% @user.resources.each do |resource|%>
     <li><%= link_to resource.title, resource_path(resource.id) %></li>
   <% end %>
 </ol>
+<% end %>
 
 <%= link_to "Add a new resource", new_resource_path %>

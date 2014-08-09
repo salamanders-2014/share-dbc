@@ -7,6 +7,7 @@ class SubjectsController < ActionController::Base
 
   def index
     @subjects = Subject.all
+    render 'index', layout: "application"
   end
 
   def show
