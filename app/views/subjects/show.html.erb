@@ -1,2 +1,6 @@
 <%= @subject.name%>
-<%= @subject.resources%>
+<ul>
+<%@subject.resources.each do |resource| %>
+ <li><%= link_to  resource.title, resource_path(resource.id) %> </li>
+<%end%>
+</ul>

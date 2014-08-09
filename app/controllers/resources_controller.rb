@@ -2,16 +2,25 @@ class ResourcesController < ApplicationController
 
   def new
     @resource = Resource.new
+    @subjects = Subject.order(:name)
   end
 
   def create
     @creator = User.find_by(id: current_user)
     @resource = @creator.resources.new(resource_params)
-
+    puts @resource
     if @resource.save
       params[:resource]["learning_style_ids"].each do |x|
-        LearningStyleResource.create(resource_id: @resource.id, learning_style_id: x)
+        if x != ""
+          LearningStyleResource.create(resource_id: @resource.id, learning_style_id: x)
+        end
       end
+      params[:resource]["subjects"].each do |x|
+        if x != ""
+          SubjectResource.create(subject_id: x, resource_id: @resource.id)
+        end
+      end
+      puts params[:resource]
       redirect_to @resource
     else
       render 'new'
@@ -86,7 +95,7 @@ class ResourcesController < ApplicationController
 
   private
     def resource_params
-      params.require(:resource).permit(:title, :link, :description, "learning_style_ids")
+      params.require(:resource).permit(:title, :link, :description, "learning_style_ids", :subjects)
     end
 
     def new_vote(val)

@@ -1,13 +1,18 @@
 <div class="intro">
-<h1>SHARE-DBC</h1>
+<h1>Welcome to Share-DBC</h1>
 </div>
 
-<% if !logged_in? %>
-<%= link_to 'Sign Up', signup_path %>
-<%= link_to 'Log In', login_path %>
-<% end %>
-<% if logged_in? %>
-  <%= link_to 'All Resources', resources_path %>
-  <%= link_to 'Log Out', logout_path(@user) %>
+<h2> Welcome <%= current_user.username %> !</p>
+
+<% if current_user.resources.length == 0 %>
+<p> You haven't added any resources yet! </p>
+<% else %>
+<p> Here are the resources you've added: </p>
+<ol>
+  <% current_user.resources.each do |resource|%>
+    <li><%= link_to resource.title, resource_path(resource.id) %></li>
+  <% end %>
+</ol>
 <% end %>
 
+<%= link_to "Add a new resource", new_resource_path %>
