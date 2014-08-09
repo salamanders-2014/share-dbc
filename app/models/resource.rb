@@ -4,7 +4,8 @@ class Resource < ActiveRecord::Base
   has_many :votes
   has_many :learning_style_resources
   has_many :learning_styles, through: :learning_style_resources
-  has_many :subjects, through: :subjects_resources
+  has_many :subject_resources
+  has_many :subjects, through: :subject_resources
 
   validates_presence_of :link #
   validates_presence_of :title #

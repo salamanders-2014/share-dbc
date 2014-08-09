@@ -51,21 +51,21 @@ ActiveRecord::Schema.define(version: 20140807185211) do
 
   add_index "resources", ["creator_id"], name: "index_resources_on_creator_id", using: :btree
 
-  create_table "subjects", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "subjects_resources", id: false, force: true do |t|
+  create_table "subject_resources", id: false, force: true do |t|
     t.integer  "subject_id"
     t.integer  "resource_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "subjects_resources", ["resource_id"], name: "index_subjects_resources_on_resource_id", using: :btree
-  add_index "subjects_resources", ["subject_id"], name: "index_subjects_resources_on_subject_id", using: :btree
+  add_index "subject_resources", ["resource_id"], name: "index_subject_resources_on_resource_id", using: :btree
+  add_index "subject_resources", ["subject_id"], name: "index_subject_resources_on_subject_id", using: :btree
+
+  create_table "subjects", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "first_name"

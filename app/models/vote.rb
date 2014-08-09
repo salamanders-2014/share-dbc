@@ -5,3 +5,4 @@ class Vote < ActiveRecord::Base
 
   validates_uniqueness_of :learning_style, scope: [:resource, :voter]
 end
+;ij.
