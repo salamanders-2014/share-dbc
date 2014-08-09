@@ -12,8 +12,17 @@
       <%= @resource.description %>
     </p>
   </div>
+  <div>
+  <% for learning_style in LearningStyle.all %>
+    <div><%= link_to "upvote", resource_upvote_path(@resource, :learning_style_id => learning_style.id), method: :post %></div>
+    <div><strong><%= @resource.votes.where(learning_style_id: learning_style.id).sum(:value) %></strong></div>
+    <div><%= link_to "downvote", resource_downvote_path(@resource, :learning_style_id => learning_style.id), method: :post%></div>
+  <% end %>
+  </div>
 </div>
 <div class="comments">
+  <%= render 'comments/form' %>
 
+  <%= render 'comments/comment' %>
 </div>
 

@@ -1,7 +1,7 @@
 class Resource < ActiveRecord::Base
   belongs_to :creator, class_name: 'User'
   has_many :comments
-  has_many :votes
+  has_many :votes, dependent: :destroy
   has_many :learning_style_resources
   has_many :learning_styles, through: :learning_style_resources
   has_many :subjects, through: :subjects_resources

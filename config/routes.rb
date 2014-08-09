@@ -8,8 +8,8 @@ get '/logout', to: 'sessions#destroy'
 resources :users
 resources :sessions, only: [:new, :create, :destroy]
 resources :resources, except: :index do
-  post '/upvote', to: 'vote#upvote'
-  post '/downvote', to: 'vote#downvote'
+  post '/upvote', to: 'resources#upvote'
+  post '/downvote', to: 'resources#downvote'
   resources :comments, except: [:index, :new, :show]
 end
 

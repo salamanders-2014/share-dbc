@@ -4,10 +4,10 @@ default: &default
   pool: 5
 
 development:
-  <<: *default
-  database: app_development
-  username:
-  password:
+  adapter: postgresql
+  host: localhost
+  username: <%= ENV['USER'] %>
+  database: HEROKU_POSTGRESQL_ORANGE_URL
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

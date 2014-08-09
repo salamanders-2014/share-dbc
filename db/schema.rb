@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20140807185211) do
     t.integer "learning_style_id"
   end
 
-  add_index "learning_style_resources", ["resource_id"], name: "index_learning_style_resources_on_resource_id"
+  add_index "learning_style_resources", ["resource_id"], name: "index_learning_style_resources_on_resource_id", using: :btree
 
   create_table "learning_styles", force: true do |t|
     t.string   "name"

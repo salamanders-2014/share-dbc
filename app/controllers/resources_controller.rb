@@ -49,21 +49,49 @@ class ResourcesController < ApplicationController
   end
 
   def upvote
-    @resource = Resource.find(params[:id])
-    @learning_style = @resource.learning_style.find(params[:learning_style])
+    @resource = Resource.find(params[:resource_id])
+    @this_vote = @resource.votes.where(voter_id: current_user.id, learning_style_id: params[:learning_style_id]).first
 
-    @resource.votes.create(voter_id:@voter.id, value: 1)
+    if current_user.id != @resource.creator.id
+      if @this_vote && @this_vote.value === -1
+        @this_vote.destroy
+        new_vote(0)
+      elsif @this_vote && @this_vote.value === 0
+        @this_vote.destroy
+        new_vote(1)
+      else
+        new_vote(1)
+      end
+    end
+    redirect_to @resource
   end
 
-  # def downvote
-  #   @resource = Resource.find(params[:id])
-  #   @voter = User.find(session[:user_id])
-  #   @resource.votes.create(voter_id:@voter.id, value: -1)
-  # end
+  def downvote
+    @resource = Resource.find(params[:resource_id])
+    @this_vote = @resource.votes.where(voter_id: current_user.id, learning_style_id: params[:learning_style_id]).first
+
+    if current_user.id != @resource.creator.id
+      if @this_vote && @this_vote.value === 1
+        @this_vote.destroy
+        new_vote(0)
+      elsif @this_vote && @this_vote.value === 0
+        @this_vote.destroy
+        new_vote(-1)
+      else
+        new_vote(-1)
+      end
+    end
+    redirect_to @resource
+  end
 
   private
     def resource_params
       params.require(:resource).permit(:title, :link, :description, "learning_style_ids")
     end
+
+    def new_vote(val)
+      @resource.votes.create(voter_id: current_user.id, learning_style_id: params[:learning_style_id], value: val)
+    end
+
 
 end

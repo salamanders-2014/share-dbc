@@ -4,13 +4,13 @@ class CommentsController < ApplicationController
   def create
     current_user
     @resource = Resource.find(params[:resource_id])
-    @comment = @resource.comments.create(comment_params)
+    @comment = @resource.comments.create(user_id: current_user.id, text: params[:comment][:text])
     redirect_to resource_path(@resource)
   end
 
   def update
     @resource = Resource.find(params[:resource_id])
-    @comment = @resource.comment.find(params[:id])
+    @comment = @resource.comments.find(params[:id])
     if current_user == @comment.user
       @comment.update(comment_params)
       redirect_to resource_path(@resource)
