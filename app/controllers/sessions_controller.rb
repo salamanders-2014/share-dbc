@@ -1,5 +1,6 @@
 class SessionsController < ActionController::Base
   def new
+    render 'new', layout: "application"
   end
 
   def create
@@ -9,7 +10,7 @@ class SessionsController < ActionController::Base
       redirect_to user
     else
       @errors = true
-      render 'new'
+      render 'new', layout: "application"
     end
   end
 
