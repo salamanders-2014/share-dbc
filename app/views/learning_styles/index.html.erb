@@ -1,0 +1,3 @@
+<% LearningStyle.all.each do |learning_style| %>
+<li><%= link_to learning_style.name, learning_style_path(learning_style) %></li>
+<% end %>

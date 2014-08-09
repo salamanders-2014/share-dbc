@@ -1,6 +1,7 @@
 class UsersController < ActionController::Base
   def new
     @user = User.new
+    render 'new', layout: "application"
   end
 
   def create
@@ -9,16 +10,13 @@ class UsersController < ActionController::Base
       session[:user_id] = @user.id
       redirect_to @user
     else
-      render 'new'
+      render 'new', layout: "application"
     end
-  end
-
-  def login
-    @user = User.new
   end
 
   def show
     @user = User.find(params[:id])
+    render 'show', layout: "application"
   end
 
   private
