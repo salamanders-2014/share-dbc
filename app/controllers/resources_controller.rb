@@ -5,7 +5,7 @@ class ResourcesController < ApplicationController
   end
 
   def create
-    @creator = current_user
+    @creator = User.find_by(id: current_user)
     @resource = @creator.resources.new(resource_params)
 
     if @resource.save
