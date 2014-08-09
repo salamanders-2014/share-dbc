@@ -5,7 +5,8 @@ class LearningStylesController < ActionController::Base
 
   def show
     puts params
-    @learning_style = LearningStyle.find_by(id: params[:id])
+    @learning_style = LearningStyle.find(params[:id])
+    @resources = @learning_style.resources
     render 'show', layout: "application"
   end
 end
