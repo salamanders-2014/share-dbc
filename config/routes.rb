@@ -10,7 +10,7 @@ resources :sessions, only: [:new, :create, :destroy]
 resources :resources, except: :index do
   post '/upvote', to: 'resources#upvote'
   post '/downvote', to: 'resources#downvote'
-  resources :comments, except: [:index, :new, :show]
+  resources :comments, except: [:index, :new, :show, :edit]
 end
 
 resources :subjects, only: [:index, :show]

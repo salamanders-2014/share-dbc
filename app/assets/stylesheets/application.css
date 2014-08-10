@@ -61,3 +61,69 @@ nav a:hover{
   width: 300px;
   height: 200px;
 }
+
+.show_resource a{
+  text-decoration: none;
+  color: #32313F;
+}
+
+.show_resource a:hover{
+  color: #F06F4F;
+}
+
+.vote_button_list{
+  padding-bottom: 100px;
+  border-bottom: 3px solid #F06F4F;
+}
+
+.vote_button{
+  display: inline-block;
+  margin: 10px;
+}
+
+.vote_button a{
+  text-decoration: none;
+  color: #32313F;
+}
+
+.vote_button .fa-sort-up:hover{
+  color: #A9C5DA;
+}
+
+.vote_button .fa-sort-down:hover{
+  color: #F06F4F;
+}
+
+.comment_item{
+  padding: 10px 5px;
+  border-bottom: 1px solid #A9C5DA;
+}
+
+.comment_item .username{
+  font-size: 0.7em;
+}
+
+.comment_item .time{
+  color: #8d9690;
+  font-size: 0.5em;
+  margin-left: 10px;
+}
+.comment-textarea{
+  border: 1px solid #A9C5DA;
+  height: 40px;
+  width: 600px;
+}
+
+input[class="comment-submit"]{
+  float: left;
+  border: none;
+  background-color: #F06F4F;
+  color: black;
+}
+input[class="comment-submit"]:hover{
+  color: #F06F4F;
+  background-color: #32313F;
+}
+.comments form{
+  margin-bottom: 40px;
+}
