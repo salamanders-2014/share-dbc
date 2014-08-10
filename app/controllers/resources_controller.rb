@@ -20,7 +20,6 @@ class ResourcesController < ApplicationController
           SubjectResource.create(subject_id: x, resource_id: @resource.id)
         end
       end
-      puts params[:resource]
       redirect_to @resource
     else
       render 'new'
