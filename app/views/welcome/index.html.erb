@@ -2,17 +2,18 @@
 <h1>Welcome to Share-DBC</h1>
 </div>
 
-<h2> Welcome <%= current_user.username %> !</p>
 
-<% if current_user.resources.length == 0 %>
-<p> You haven't added any resources yet! </p>
-<% else %>
-<p> Here are the resources you've added: </p>
-<ol>
-  <% current_user.resources.each do |resource|%>
-    <li><%= link_to resource.title, resource_path(resource.id) %></li>
+<% if logged_in? %>
+  <h2> Welcome <%= current_user.username %> !</p>
+  <% if current_user.resources.length == 0 %>
+  <p> You haven't added any resources yet! </p>
+  <% else %>
+  <p> Here are the resources you've added: </p>
+  <ol>
+    <% current_user.resources.each do |resource|%>
+      <li><%= link_to resource.title, resource_path(resource.id) %></li>
+    <% end %>
+  </ol>
   <% end %>
-</ol>
+  <%= link_to "Add a new resource", new_resource_path %>
 <% end %>
-
-<%= link_to "Add a new resource", new_resource_path %>
