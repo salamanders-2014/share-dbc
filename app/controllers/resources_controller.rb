@@ -8,12 +8,17 @@ class ResourcesController < ApplicationController
   def create
     @creator = User.find_by(id: current_user)
     @resource = @creator.resources.new(resource_params)
-    puts @resource
+    puts params[:resource]["learning_style_ids"]
+
     if @resource.save
-      params[:resource]["learning_style_ids"].each do |x|
-        if x != ""
-          LearningStyleResource.create(resource_id: @resource.id, learning_style_id: x)
+      if params[:resource]["learning_style_ids"] != nil
+        params[:resource]["learning_style_ids"].each do |x|
+          if x != ""
+            LearningStyleResource.create(resource_id: @resource.id, learning_style_id: x)
+          end
         end
+      else
+        LearningStyleResource.create(resource_id: @resource.id, learning_style_id: 1)
       end
       params[:resource]["subjects"].each do |x|
         if x != ""
