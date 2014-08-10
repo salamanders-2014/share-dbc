@@ -11,7 +11,6 @@ class Resource < ActiveRecord::Base
   validates_presence_of :title #
   validates_length_of :title, minimum: 4 #
   validates_length_of :link, minimum: 6 #
-  validate :learning_styles_check
 
 
   # validates :link, presence: true, length: {minimum: 6}
@@ -21,9 +20,6 @@ class Resource < ActiveRecord::Base
     http_stripper #<--don't know how to test on before validation explicitly x
   end
 
-  def learning_styles_check
-    errors.add(:learning_styles, "must have at least one learning style") if learning_styles.length < 1
-  end
 
   def http_stripper
     self.link = self.link.gsub(/^\w*\:*\/+/, "") if attribute_present?("link")
