@@ -20,6 +20,16 @@
   <% end %>
   </div>
 </div>
+
+<% if @resource.subjects.length == 0 %>
+  <p>This resource has not yet been categorized!</p>
+<% elsif @resource.subjects.length == 1 %>
+  <p>Subjects: <%= link_to @resource.subjects[0].name, subject_path(@resource.subjects[0].id) %></p>
+<% else %>
+  <p>Subjects: <% @resource.subjects.each do |subject| %>
+  <%= link_to subject.name, subject_path(subject.id) %></p>
+  <% end %>
+<% end %>
 <div class="comments">
   <%= render 'comments/form' %>
 

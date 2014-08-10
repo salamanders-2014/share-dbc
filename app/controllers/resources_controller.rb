@@ -2,7 +2,7 @@ class ResourcesController < ApplicationController
 
   def new
     @resource = Resource.new
-    @subjects = Subject.order(:name)
+    @subjects ||= Subject.order(:name)
   end
 
   def create
@@ -22,7 +22,8 @@ class ResourcesController < ApplicationController
       end
       redirect_to @resource
     else
-      render 'new'
+      @subjects ||= Subject.order(:name)
+      render :new
     end
   end
 
