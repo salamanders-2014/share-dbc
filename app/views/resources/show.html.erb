@@ -12,15 +12,17 @@
       <%= @resource.description %>
     </p>
   </div>
-  <div class="vote_button_list">
-  <% for learning_style in LearningStyle.all %>
-  <div class="vote_button">
-    <div><%= link_to "", resource_upvote_path(@resource, :learning_style_id => learning_style.id), method: :post , class: 'fa fa-sort-up'%></div>
-    <div><small><%= @resource.votes.where(learning_style_id: learning_style.id).sum(:value) %></small></div>
-    <div><%= link_to "", resource_downvote_path(@resource, :learning_style_id => learning_style.id), method: :post, class: 'fa fa-sort-down'%></div>
-  </div>
+  <% if logged_in? %>
+    <div class="vote_button_list">
+    <% for learning_style in LearningStyle.all %>
+    <div class="vote_button">
+      <div><%= link_to "", resource_upvote_path(@resource, :learning_style_id => learning_style.id), method: :post , class: 'fa fa-sort-up'%></div>
+      <div><small><%= @resource.votes.where(learning_style_id: learning_style.id).sum(:value) %></small></div>
+      <div><%= link_to "", resource_downvote_path(@resource, :learning_style_id => learning_style.id), method: :post, class: 'fa fa-sort-down'%></div>
+    </div>
+    <% end %>
+    </div>
   <% end %>
-  </div>
 </div>
 
 <% if @resource.subjects.length == 0 %>
@@ -32,9 +34,15 @@
   <%= link_to subject.name, subject_path(subject.id) %></p>
   <% end %>
 <% end %>
-<div class="comments">
-  <%= render 'comments/form' %>
 
-  <%= render 'comments/comment' %>
-</div>
+<% if logged_in? %>
+  <div class="comments">
+    <%= render 'comments/form' %>
 
+    <%= render 'comments/comment' %>
+  </div>
+<% end %>
+
+<% if !logged_in? %>
+  <p>To comment or vote on this resource please  <%= link_to 'sign up', signup_path %> or <%= link_to 'log in', login_path %>!</p>
+<% end %>
