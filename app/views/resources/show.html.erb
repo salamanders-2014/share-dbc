@@ -16,6 +16,7 @@
     <div class="vote_button_list">
     <% for learning_style in LearningStyle.all %>
     <div class="vote_button">
+      <span><%=learning_style.name %></span>
       <div><%= link_to "", resource_upvote_path(@resource, :learning_style_id => learning_style.id), method: :post , class: 'fa fa-sort-up'%></div>
       <div><small><%= @resource.votes.where(learning_style_id: learning_style.id).sum(:value) %></small></div>
       <div><%= link_to "", resource_downvote_path(@resource, :learning_style_id => learning_style.id), method: :post, class: 'fa fa-sort-down'%></div>
