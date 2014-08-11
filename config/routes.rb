@@ -5,7 +5,7 @@ get '/signup', to: 'users#new'
 get '/login', to: 'sessions#new'
 get '/logout', to: 'sessions#destroy'
 
-resources :users
+resources :users,except: [:index, :new]
 resources :sessions, only: [:new, :create, :destroy]
 resources :resources, except: :index do
   post '/upvote', to: 'resources#upvote'

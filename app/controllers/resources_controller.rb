@@ -33,11 +33,15 @@ class ResourcesController < ApplicationController
   end
 
   def show
-
     @user = current_user
-
     @resource = Resource.find(params[:id])
     @creator = @resource.creator
+    @votes = @resource.votes
+    @vote_array =[{type: "Visual", value: ""},{type: "Auditory", value: ""},{type: "Read/Write", value: ""},{type: "Kinesthetic", value: ""}]
+    (1..4).each do |v|
+      @vote_array[v-1][:value] = @votes.where(learning_style_id: v).sum(:value)
+    end
+
   end
 
   def edit
