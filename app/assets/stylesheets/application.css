@@ -78,7 +78,7 @@ nav a:hover{
 
 .vote_button{
   display: inline-block;
-  margin: 10px;
+  margin: 5px;
 }
 
 .vote_button a{
@@ -92,6 +92,11 @@ nav a:hover{
 
 .vote_button .fa-sort-down:hover{
   color: #F06F4F;
+}
+
+.learning_style_name{
+  font-size: 0.2em;
+
 }
 
 .comment_item{
@@ -124,6 +129,34 @@ input[class="comment-submit"]:hover{
   color: #F06F4F;
   background-color: #32313F;
 }
+.chart{
+  margin-top: 100px;
+}
 .comments form{
   margin-bottom: 40px;
+}
+.bar.positive{
+  fill: #A9C5DA;
+}
+.bar.positive:hover{
+  fill: #2f44ff;
+}
+.bar.negative{
+  fill: #F06F4F;
+}
+.bar.negative:hover {
+  fill: red ;
+}
+.chart-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+.delete_comment{
+  text-decoration: none;
+  font-size: 0.7em;
+  color: red;
 }

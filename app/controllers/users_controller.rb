@@ -8,7 +8,7 @@ class UsersController < ActionController::Base
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to @user
+      redirect_to(:back)
     else
       render 'new', layout: "application"
     end

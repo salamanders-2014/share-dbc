@@ -12,19 +12,61 @@
       <%= @resource.description %>
     </p>
   </div>
-  <% if logged_in? %>
-    <div class="vote_button_list">
+
+
+  <div class="chart"></div>
+  <div class="vote_button_list">
     <% for learning_style in LearningStyle.all %>
-    <div class="vote_button">
-      <span><%=learning_style.name %></span>
-      <div><%= link_to "", resource_upvote_path(@resource, :learning_style_id => learning_style.id), method: :post , class: 'fa fa-sort-up'%></div>
-      <div><small><%= @resource.votes.where(learning_style_id: learning_style.id).sum(:value) %></small></div>
-      <div><%= link_to "", resource_downvote_path(@resource, :learning_style_id => learning_style.id), method: :post, class: 'fa fa-sort-down'%></div>
-    </div>
-    <% end %>
-    </div>
+  <div class="vote_button" title="<%= learning_style.name %>">
+    <div><%= link_to "", resource_upvote_path(@resource, :learning_style_id => learning_style.id), method: :post , class: 'fa fa-sort-up'%></div>
+    <div class="vote_count"><small><%= @resource.votes.where(learning_style_id: learning_style.id).sum(:value) %></small></div>
+    <div><%= link_to "", resource_downvote_path(@resource, :learning_style_id => learning_style.id), method: :post, class: 'fa fa-sort-down'%></div>
+  </div>
   <% end %>
+  </div>
+  <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+  <script>
+  var jsonData = (<%= @vote_array.to_json.html_safe %>);
+
+  var v = d3.max(jsonData, function(d){ return d.value; });
+  console.log(v);
+  var tip = d3.tip()
+  .attr('class', 'd3-tip')
+  .offset([-10, 0])
+  .html(function(d) {
+    return d.type + ": " + d.value ;
+  })
+  var margin = {top: 0, right: 0, bottom: 0, left: 0},
+      width = 93- margin.left - margin.right,
+      height = 150 - margin.top - margin.bottom;
+  var x = d3.scale.ordinal().rangeRoundBands([0, width], .1);
+  var y = d3.scale.linear().range([height, 0]);
+  var svg = d3.select(".chart").append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  var x0 = Math.max(-d3.min(jsonData), d3.max(jsonData));
+       x.domain(jsonData.map(function(d) { return d.type; }));
+       y.domain([d3.min(jsonData, function(d) { return d.value; }), d3.max(jsonData, function(d) { return d.value; })]);
+  svg.call(tip);
+    svg.selectAll(".bar")
+        .data(jsonData).enter().append("rect")
+        .attr("class", function(d) { return d.value < 0 ? "bar negative" : "bar positive"; })
+        .attr("x", function(d, i) { return x(d.type); })
+        .attr("y", function(d, i) { return y(Math.max(0, d.value));})
+        .attr("width", 13)
+        .attr("height", 0)
+        .transition()
+        .duration(2000)
+        .attr("height", function(d) { return Math.abs(y(d.value) - y(0)); })
+
+    svg.selectAll('.bar')
+        .on('mouseover', tip.show)
+        .on('mouseout', tip.hide);
+  </script>
 </div>
+
 
 <% if @resource.subjects.length == 0 %>
   <p>This resource has not yet been categorized!</p>

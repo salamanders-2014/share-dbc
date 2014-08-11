@@ -14,4 +14,7 @@ class ApplicationController < ActionController::Base
     return true if session[:user_id] != nil
     false
   end
+
+
+
 end
